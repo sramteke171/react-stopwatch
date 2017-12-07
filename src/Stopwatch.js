@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import "./Stopwatch.css"
 
 class Stopwatch extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       counter: 0,
       interval: null
