@@ -9,18 +9,23 @@ class Stopwatch extends Component {
       valid: false,
     };
     this.setCounter = null;
+    this.state.running = false;
   }
 
   //handleStart method that calls setInterval() and updates counter every second.
   //(Make sure to use setState to update)
 
   handleStart = () => {
-    this.setCounter = setInterval(this.startCounter, 1000);
+    if (this.state.running === false) {
+      this.setCounter = setInterval(this.startCounter, 1000);
+    }
+    this.state.running = true;
   };
 
   startCounter = () => {
     this.setState({
       counter: this.state.counter + 1,
+      running: true,
     });
   };
 
@@ -29,10 +34,12 @@ class Stopwatch extends Component {
       counter: 0,
     });
     clearInterval(this.setCounter);
+    this.state.running = false;
   };
 
   handlePause = () => {
     clearInterval(this.setCounter);
+    this.state.running = false;
   };
 
   render() {
